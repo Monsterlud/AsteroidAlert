@@ -1,4 +1,4 @@
-package com.monsalud.asteroidalert.detail
+package com.monsalud.asteroidalert.presentation.detail
 
 
 import android.os.Bundle

@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="asteroid"
-            type="com.monsalud.asteroidalert.Asteroid" />
+            type="com.monsalud.asteroidalert.domain.Asteroid" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

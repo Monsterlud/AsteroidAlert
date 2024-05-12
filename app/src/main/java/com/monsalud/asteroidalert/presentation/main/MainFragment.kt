@@ -1,4 +1,4 @@
-package com.monsalud.asteroidalert.main
+package com.monsalud.asteroidalert.presentation.main
 
 import android.os.Bundle
 import android.view.*
@@ -11,15 +11,17 @@ import com.monsalud.asteroidalert.databinding.FragmentMainBinding
 class MainFragment : Fragment() {
 
     private val viewModel: MainViewModel by lazy {
-        ViewModelProvider(this).get(MainViewModel::class.java)
+        ViewModelProvider(this)[MainViewModel::class.java]
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val binding = FragmentMainBinding.inflate(inflater)
         binding.lifecycleOwner = this
-
         binding.viewModel = viewModel
+        binding.asteroidRecycler.adapter = AsteroidAdapter()
 
         setHasOptionsMenu(true)
 

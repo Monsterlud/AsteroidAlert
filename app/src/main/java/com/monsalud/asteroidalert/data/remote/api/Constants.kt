@@ -1,4 +1,4 @@
-package com.monsalud.asteroidalert
+package com.monsalud.asteroidalert.data.remote.api
 
 object Constants {
     const val API_QUERY_DATE_FORMAT = "YYYY-MM-dd"

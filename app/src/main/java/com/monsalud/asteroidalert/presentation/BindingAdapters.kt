@@ -1,8 +1,9 @@
-package com.monsalud.asteroidalert
+package com.monsalud.asteroidalert.presentation
 
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.monsalud.asteroidalert.R
 
 @BindingAdapter("statusIcon")
 fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {

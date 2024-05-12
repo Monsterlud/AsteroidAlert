@@ -1,7 +1,6 @@
-package com.monsalud.asteroidalert.api
+package com.monsalud.asteroidalert.data.remote.api
 
-import com.monsalud.asteroidalert.Asteroid
-import com.monsalud.asteroidalert.Constants
+import com.monsalud.asteroidalert.domain.Asteroid
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
