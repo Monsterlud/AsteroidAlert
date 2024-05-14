@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.internal.Kapt3GradleSubplugin.Companion.isIncrementalKapt
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -38,6 +40,10 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+
+    kapt {
+        useBuildCache = false
+    }
 }
 
 dependencies {
@@ -57,6 +63,7 @@ dependencies {
 
     // ViewModel & LiveData
     implementation(libs.lifecycle)
+    implementation(libs.lifecycle.runtime)
 
     // Retrofit
     implementation(libs.retrofit2)

@@ -7,16 +7,15 @@
     <data>
         <variable
             name="asteroid"
-            type="com.monsalud.asteroidalert.data.local.room.AsteroidEntity" />
+            type="com.monsalud.asteroidalert.domain.Asteroid" />
         <variable
             name="clickListener"
-            type="com.monsalud.asteroidalert.presentation.main.AsteroidListener" />
+            type="com.monsalud.asteroidalert.presentation.main.AsteroidClickListener" />
     </data>
     
 <androidx.constraintlayout.widget.ConstraintLayout 
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:onClick="@{() -> clickListener.onClick(asteroid)}">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/tv_asteroid_title"
@@ -24,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
-        android:textColor="@color/default_text_color"
+        android:textColor="@{asteroid.isPotentiallyHazardous ? @color/potentially_hazardous : @color/default_text_color}"
         android:textSize="24dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"

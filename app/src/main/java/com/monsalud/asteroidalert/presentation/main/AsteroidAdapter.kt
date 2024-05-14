@@ -1,64 +1,65 @@
 package com.monsalud.asteroidalert.presentation.main
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.monsalud.asteroidalert.R
+import com.monsalud.asteroidalert.databinding.ListItemAsteroidBinding
 import com.monsalud.asteroidalert.domain.Asteroid
 
-class AsteroidAdapter : RecyclerView.Adapter<AsteroidAdapter.AsteroidViewHolder>() {
-    private var asteroidList = getFakeAsteroidList()
+class AsteroidAdapter(
+    private val clickListener: AsteroidClickListener
+) : ListAdapter<Asteroid, AsteroidAdapter.AsteroidViewHolder>(DiffCallback) {
 
+    companion object DiffCallback : DiffUtil.ItemCallback<Asteroid>() {
+        override fun areItemsTheSame(oldItem: Asteroid, newItem: Asteroid): Boolean {
+            return oldItem === newItem
+        }
+
+        override fun areContentsTheSame(oldItem: Asteroid, newItem: Asteroid): Boolean {
+            return oldItem.id == newItem.id
+        }
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AsteroidViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater.inflate(R.layout.list_item_asteroid, parent, false)
-        return AsteroidViewHolder(view)
+        return AsteroidViewHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: AsteroidViewHolder, position: Int) {
-        val item = asteroidList[position]
-        holder.asteroidTitle.text = item.codename
-        holder.asteroidDate.text = item.closeApproachDate
-        if (!item.isPotentiallyHazardous) {
-            holder.asteroidStatus.setImageResource(R.drawable.ic_status_normal)
-        } else {
-            holder.asteroidStatus.setImageResource(R.drawable.ic_status_potentially_hazardous)
+        val item = getItem(position)
+        holder.itemView.setOnClickListener {
+            clickListener.onClick(item)
         }
+        holder.bind(item, clickListener)
     }
 
-    override fun getItemCount(): Int = asteroidList.size
+    class AsteroidViewHolder private constructor(private val binding: ListItemAsteroidBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(
+            item: Asteroid,
+            clickListener: AsteroidClickListener
+        ) {
+            binding.tvAsteroidTitle.text = item.codename
+            binding.tvAsteroidDate.text = item.closeApproachDate
+            binding.clickListener = clickListener
+            binding.ivAsteroidStatus.setImageResource(
+                when {
+                    item.isPotentiallyHazardous -> R.drawable.ic_status_potentially_hazardous
+                    else -> R.drawable.ic_status_normal
+                }
+            )
+        }
 
-    class AsteroidViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val asteroidTitle: TextView = itemView.findViewById<TextView>(R.id.tv_asteroid_title)
-        val asteroidDate: TextView = itemView.findViewById<TextView>(R.id.tv_asteroid_date)
-        val asteroidStatus: ImageView = itemView.findViewById<ImageView>(R.id.iv_asteroid_status)
+        companion object {
+            fun from(parent: ViewGroup): AsteroidViewHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = ListItemAsteroidBinding.inflate(layoutInflater,  parent, false)
+                return AsteroidViewHolder(binding)
+            }
+        }
     }
 }
 
-fun getFakeAsteroidList(): List<Asteroid> {
-    return listOf(
-        Asteroid(1, "Asteroid1", "2024-06-01", 1.0, 100.0, 500.0, 10_000.0, false),
-        Asteroid(2, "Asteroid2", "2024-06-02", 1.0, 100.0, 500.0, 10_000.0, true),
-        Asteroid(3, "Asteroid3", "2024-06-03", 1.0, 100.0, 500.0, 10_000.0, false),
-        Asteroid(4, "Asteroid4", "2024-06-04", 1.0, 100.0, 500.0, 10_000.0, true),
-        Asteroid(5, "Asteroid5", "2024-06-05", 1.0, 100.0, 500.0, 10_000.0, false),
-        Asteroid(6, "Asteroid6", "2024-06-06", 1.0, 100.0, 500.0, 10_000.0, true),
-        Asteroid(7, "Asteroid7", "2024-06-07", 1.0, 100.0, 500.0, 10_000.0, false),
-        Asteroid(8, "Asteroid8", "2024-06-08", 1.0, 100.0, 500.0, 10_000.0, true),
-        Asteroid(9, "Asteroid9", "2024-06-09", 1.0, 100.0, 500.0, 10_000.0, false),
-        Asteroid(10, "Asteroid10", "2024-06-10", 1.0, 100.0, 500.0, 10_000.0, true),
-        Asteroid(11, "Asteroid11", "2024-06-11", 1.0, 100.0, 500.0, 10_000.0, false),
-        Asteroid(12, "Asteroid12", "2024-06-12", 1.0, 100.0, 500.0, 10_000.0, true),
-        Asteroid(13, "Asteroid13", "2024-06-13", 1.0, 100.0, 500.0, 10_000.0, false),
-        Asteroid(14, "Asteroid14", "2024-06-14", 1.0, 100.0, 500.0, 10_000.0, true),
-        Asteroid(15, "Asteroid15", "2024-06-15", 1.0, 100.0, 500.0, 10_000.0, false),
-        Asteroid(16, "Asteroid16", "2024-06-16", 1.0, 100.0, 500.0, 10_000.0, true),
-        Asteroid(17, "Asteroid17", "2024-06-17", 1.0, 100.0, 500.0, 10_000.0, false),
-        Asteroid(18, "Asteroid18", "2024-06-18", 1.0, 100.0, 500.0, 10_000.0, true),
-        Asteroid(19, "Asteroid19", "2024-06-19", 1.0, 100.0, 500.0, 10_000.0, false),
-        Asteroid(20, "Asteroid20", "2024-06-20", 1.0, 100.0, 500.0, 10_000.0, true)
-    )
+class AsteroidClickListener(val clickListener: (asteroid: Asteroid) -> Unit) {
+    fun onClick(asteroid: Asteroid) = clickListener(asteroid)
 }

@@ -3,6 +3,7 @@ package com.monsalud.asteroidalert.data.local.room
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.monsalud.asteroidalert.domain.Asteroid
 
 @Entity(tableName = "incoming_asteroid_table")
 data class AsteroidEntity constructor(
@@ -30,3 +31,31 @@ data class AsteroidEntity constructor(
     @ColumnInfo(name = "is_potentially_dangerous")
     val isPotentiallyDangerous: Boolean
 )
+
+fun List<AsteroidEntity>.asDomainModel(): List<Asteroid> {
+    return map {
+        Asteroid(
+            id = it.asteroidId,
+            codename = it.codeName,
+            closeApproachDate = it.closeApproachDate,
+            absoluteMagnitude = it.absoluteMagnitude,
+            estimatedDiameter = it.estimatedDiameter,
+            relativeVelocity = it.relativeVelocity,
+            distanceFromEarth = it.distanceFromEarth,
+            isPotentiallyHazardous = it.isPotentiallyDangerous
+        )
+    }
+}
+
+fun AsteroidEntity.asDomainModel(): Asteroid {
+    return Asteroid(
+        id = asteroidId,
+        codename = codeName,
+        closeApproachDate = closeApproachDate,
+        absoluteMagnitude = absoluteMagnitude,
+        estimatedDiameter = estimatedDiameter,
+        relativeVelocity = relativeVelocity,
+        distanceFromEarth = distanceFromEarth,
+        isPotentiallyHazardous = isPotentiallyDangerous
+    )
+}
