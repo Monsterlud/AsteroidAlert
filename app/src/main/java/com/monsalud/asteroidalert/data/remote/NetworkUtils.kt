@@ -1,10 +1,12 @@
-package com.monsalud.asteroidalert.data.remote.api
+package com.monsalud.asteroidalert.data.remote
 
 import com.monsalud.asteroidalert.domain.Asteroid
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+
+private const val DATE_FORMAT = "%04d-%02d-%02d"
 
 fun parseAsteroidsJsonResult(jsonResult: JSONObject): ArrayList<Asteroid> {
     val nearEarthObjectsJson = jsonResult.getJSONObject("near_earth_objects")
@@ -33,8 +35,15 @@ fun parseAsteroidsJsonResult(jsonResult: JSONObject): ArrayList<Asteroid> {
                 val isPotentiallyHazardous = asteroidJson
                     .getBoolean("is_potentially_hazardous_asteroid")
 
-                val asteroid = Asteroid(id, codename, formattedDate, absoluteMagnitude,
-                    estimatedDiameter, relativeVelocity, distanceFromEarth, isPotentiallyHazardous)
+                val asteroid = Asteroid(
+                    id, codename,
+                    formattedDate,
+                    absoluteMagnitude,
+                    estimatedDiameter,
+                    relativeVelocity,
+                    distanceFromEarth,
+                    isPotentiallyHazardous
+                )
                 asteroidList.add(asteroid)
             }
         }
@@ -55,4 +64,25 @@ private fun getNextSevenDaysFormattedDates(): ArrayList<String> {
     }
 
     return formattedDateList
+}
+
+fun getTodayDate() : String {
+    val calendar = Calendar.getInstance()
+    return getFormattedDate(calendar)
+}
+
+fun getEndSearchDate() : String {
+    val calendar = Calendar.getInstance()
+    calendar.add(Calendar.DAY_OF_MONTH, 7)
+    return getFormattedDate(calendar)
+}
+
+private fun getFormattedDate(calendar: Calendar) : String {
+    return String.format(
+        Locale.getDefault(),
+        DATE_FORMAT,
+        calendar.get(Calendar.YEAR),
+        calendar.get(Calendar.MONTH) + 1,
+        calendar.get(Calendar.DAY_OF_MONTH)
+    )
 }

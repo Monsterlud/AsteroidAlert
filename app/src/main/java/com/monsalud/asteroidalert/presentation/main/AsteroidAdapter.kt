@@ -22,6 +22,7 @@ class AsteroidAdapter(
             return oldItem.id == newItem.id
         }
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AsteroidViewHolder {
         return AsteroidViewHolder.from(parent)
     }

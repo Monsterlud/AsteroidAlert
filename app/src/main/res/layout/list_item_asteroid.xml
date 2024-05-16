@@ -23,8 +23,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
-        android:textColor="@{asteroid.isPotentiallyHazardous ? @color/potentially_hazardous : @color/default_text_color}"
-        android:textSize="24dp"
+        android:textColor="@color/default_text_color"
+        android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -60,7 +60,6 @@
         android:layout_marginTop="4dp"
         android:background="@color/charcoal_grey"
         app:layout_constraintTop_toBottomOf="@+id/tv_asteroid_date" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

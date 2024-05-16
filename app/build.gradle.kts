@@ -21,18 +21,15 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-
     buildTypes {
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
-
     buildFeatures {
         dataBinding = true
     }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -40,7 +37,6 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
-
     kapt {
         useBuildCache = false
     }
@@ -69,6 +65,7 @@ dependencies {
     implementation(libs.retrofit2)
     implementation(libs.retrofit2.converter.moshi)
     implementation(libs.retrofit2.converter.scalars)
+    implementation(libs.retrofit.coroutines.adapter)
 
     // Moshi
     implementation(libs.moshi)

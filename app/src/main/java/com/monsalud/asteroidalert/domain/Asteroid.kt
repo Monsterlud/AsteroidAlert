@@ -1,6 +1,7 @@
 package com.monsalud.asteroidalert.domain
 
 import android.os.Parcelable
+import com.monsalud.asteroidalert.data.local.room.AsteroidEntity
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
