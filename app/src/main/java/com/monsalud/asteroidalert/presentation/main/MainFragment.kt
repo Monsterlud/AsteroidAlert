@@ -40,9 +40,9 @@ class MainFragment : Fragment() {
             viewModelFactory
         )[MainViewModel(asteroidRepository)::class.java]
         binding.viewModel = viewModel
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.clearAsteroids()
-        }
+//        viewLifecycleOwner.lifecycleScope.launch {
+//            viewModel.clearAsteroids()
+//        }
 
         val adapter = AsteroidAdapter(AsteroidClickListener { asteroid ->
             viewModel.onAsteroidItemClicked(asteroid)

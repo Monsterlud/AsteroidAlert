@@ -1,3 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">AsteroidAlert</string>
+
+    <string name="next_week_asteroids">Ver semana de asteroides</string>
+    <string name="today_asteroids">Ver hoy asteroides</string>
+    <string name="saved_asteroids">Ver asteroides guardados</string>
+    <string name="close_approach_data_title">Fecha de aproximación cercana</string>
+    <string name="absolute_magnitude_title">Magnitud absoluta</string>
+    <string name="estimated_diameter_title">Diámetro estimado</string>
+    <string name="relative_velocity_title">Velocidad relativa</string>
+    <string name="distance_from_earth_title">Distancia de la tierra</string>
+    <string name="astronomical_unit_format">%f au</string>
+    <string name="km_unit_format">%f km</string>
+    <string name="km_s_unit_format">%f km/s</string>
+    <string name="image_of_the_day">Imagen astronómica del día</string>
+    <string name="astronomica_unit_explanation">La unidad astronómica (au) es una unidad de longitud, aproximadamente la distancia de la Tierra al Sol y equivale a unos 150 millones de kilómetros (93 millones de millas).</string>
+    <string name="astronomical_unit_explanation_button">Definición de unidad astronómica</string>
+    <string name="potentially_hazardous_asteroid_image">Imagen de asteroide potencialmente peligroso</string>
+    <string name="not_hazardous_asteroid_image">Imagen de asteroide no peligroso</string>
+    <string name="this_is_nasa_s_picture_of_day_showing_nothing_yet">Esta es la fotografía del día de la NASA, que aún no muestra nada.</string>
+    <string name="nasa_picture_of_day_content_description_format">La fotografia del dia de la NASA: %s</string>
+    <string name="learn_more_about_today_s_image">Obtenga más información sobre la imagen de hoy.</string>
 </resources>
