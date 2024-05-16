@@ -60,7 +60,7 @@ class AsteroidRepository(
                 Log.i("AsteroidRepository", "image url: ${apod.url}")
                 return@withContext apod
             } catch (e: Exception) {
-                Log.e("AsteroidRepository", "getApod() error")
+                Log.e("AsteroidRepository", "getApod() error: ${e.message}")
                 return@withContext null
             }
         }

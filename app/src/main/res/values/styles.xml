@@ -6,4 +6,16 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="DetailTitleText">
+        <item name="font">@font/roboto_mono_light</item>
+        <item name="android:textColor">@color/text_grey</item>
+        <item name="android:textSize">@dimen/detailTitleTextSize</item>
+    </style>
+
+    <style name="DetailValueText">
+        <item name="font">@font/roboto_mono_light</item>
+        <item name="android:textColor">@color/charcoal_grey</item>
+        <item name="android:textSize">@dimen/detailValueTextSize</item>
+    </style>
+
 </resources>
