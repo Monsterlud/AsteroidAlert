@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.monsalud.asteroidalert.main.MainFragment"
+        android:name="com.monsalud.asteroidalert.presentation.main.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
@@ -16,12 +16,12 @@
 
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.monsalud.asteroidalert.detail.DetailFragment"
+        android:name="com.monsalud.asteroidalert.presentation.detail.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail">
         <argument
             android:name="selectedAsteroid"
-            app:argType="com.monsalud.asteroidalert.Asteroid"/>
+            app:argType="com.monsalud.asteroidalert.domain.Asteroid"/>
     </fragment>
 
 </navigation>

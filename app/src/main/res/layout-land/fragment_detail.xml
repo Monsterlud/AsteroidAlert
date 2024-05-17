@@ -17,23 +17,26 @@
 
         <ImageView
             android:id="@+id/activity_main_image_of_the_day"
-            android:layout_width="match_parent"
+            android:layout_width="370dp"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:contentDescription="@{viewModel.selectedAsteroid.potentiallyHazardous ? @string/potentially_hazardous_asteroid_description : @string/safe_asteroid_description}"
             app:asteroidStatusImage="@{viewModel.selectedAsteroid.potentiallyHazardous}"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:padding="24dp"
+            android:scaleType="centerCrop"
             tools:srcCompat="@drawable/asteroid_safe" />
 
         <ScrollView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:padding="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activity_main_image_of_the_day">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/activity_main_image_of_the_day"
+            android:layout_marginStart="24dp">
 
             <LinearLayout
                 android:layout_width="match_parent"

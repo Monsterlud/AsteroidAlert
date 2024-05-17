@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.internal.Kapt3GradleSubplugin.Companion.isIncrementalKapt
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -19,24 +21,24 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-
     buildTypes {
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
-
     buildFeatures {
         dataBinding = true
     }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
         jvmTarget = "17"
+    }
+    kapt {
+        useBuildCache = false
     }
 }
 
@@ -47,6 +49,7 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.swiprefreshlayout)
 
     // Material
     implementation(libs.material)
@@ -57,11 +60,13 @@ dependencies {
 
     // ViewModel & LiveData
     implementation(libs.lifecycle)
+    implementation(libs.lifecycle.runtime)
 
     // Retrofit
     implementation(libs.retrofit2)
     implementation(libs.retrofit2.converter.moshi)
     implementation(libs.retrofit2.converter.scalars)
+    implementation(libs.retrofit.coroutines.adapter)
 
     // Moshi
     implementation(libs.moshi)

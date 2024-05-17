@@ -2,9 +2,10 @@
 <resources>
     <color name="colorPrimary">#010613</color>
     <color name="colorPrimaryDark">#010613</color>
-    <color name="colorAccent">#FF8282</color>
+    <color name="colorAccent">#F94B4B</color>
     <color name="app_background">#010613</color>
     <color name="default_text_color">#FFFFFF</color>
-    <color name="text_grey">#D2D2D2</color>
-    <color name="potentially_hazardous">#FF8282</color>
+    <color name="text_grey">#A1B0B1</color>
+    <color name="charcoal_grey">#6F6565</color>
+    <color name="potentially_hazardous">#F94B4B</color>
 </resources>
