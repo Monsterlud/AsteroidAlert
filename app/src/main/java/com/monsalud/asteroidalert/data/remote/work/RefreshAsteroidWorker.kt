@@ -7,6 +7,9 @@ import com.monsalud.asteroidalert.data.AsteroidRepository
 import com.monsalud.asteroidalert.data.local.room.AsteroidDatabase
 import retrofit2.HttpException
 
+/**
+ * Worker that clears and refreshes the database Asteroid list in the background
+ */
 class RefreshAsteroidWorker(
     context: Context,
     params: WorkerParameters

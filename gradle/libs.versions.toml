@@ -21,6 +21,7 @@ workmanager = "2.9.0"
 picasso = "2.5.2"
 safeargs = "2.7.7"
 retrofitCoroutinesAdapter = "0.9.2"
+swiperefresh = "1.1.0"
 
 [libraries]
 # Android
@@ -28,6 +29,7 @@ androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = 
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+androidx-swiprefreshlayout = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "swiperefresh"}
 
 # Kotlin
 

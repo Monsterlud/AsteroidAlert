@@ -21,6 +21,9 @@ private val retrofit = Retrofit.Builder()
     .baseUrl(Constants.BASE_URL)
     .build()
 
+/**
+ * API Service to make the Astronomy Picture of the Day Service calls
+ */
 interface APODApiService {
     @GET("planetary/apod")
     fun getApod(

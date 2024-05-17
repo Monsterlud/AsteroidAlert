@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.monsalud.asteroidalert.presentation.detail.DetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/app_background">
+
+        <ImageView
+            android:id="@+id/activity_main_image_of_the_day"
+            android:layout_width="370dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:contentDescription="@{viewModel.selectedAsteroid.potentiallyHazardous ? @string/potentially_hazardous_asteroid_description : @string/safe_asteroid_description}"
+            app:asteroidStatusImage="@{viewModel.selectedAsteroid.potentiallyHazardous}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:padding="24dp"
+            android:scaleType="centerCrop"
+            tools:srcCompat="@drawable/asteroid_safe" />
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/activity_main_image_of_the_day"
+            android:layout_marginStart="24dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/close_approach_date_content_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/DetailTitleText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/close_approach_data_title" />
+
+                    <TextView
+                        android:id="@+id/close_approach_date"
+                        style="@style/DetailValueText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="@{viewModel.selectedAsteroid.closeApproachDate}"
+                        tools:text="2020-02-01" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/absolute_magnitude_content_group"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:focusable="true"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/DetailTitleText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/absolute_magnitude_title" />
+
+                        <TextView
+                            android:id="@+id/absolute_magnitude"
+                            style="@style/DetailValueText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            app:astronomicalUnitText="@{viewModel.selectedAsteroid.absoluteMagnitude}"
+                            tools:text="25.126 au" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/help_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/find_out_more_about_astronomical_units"
+                        android:padding="16dp"
+                        app:srcCompat="@drawable/ic_help_circle" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/estimated_diameter_content_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/DetailTitleText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/estimated_diameter_title" />
+
+                    <TextView
+                        android:id="@+id/estimated_diameter"
+                        style="@style/DetailValueText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        app:kmUnitText="@{viewModel.selectedAsteroid.estimatedDiameter}"
+                        tools:text="0.82 km" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/relative_velocity_content_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/DetailTitleText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/relative_velocity_title" />
+
+                    <TextView
+                        android:id="@+id/relative_velocity"
+                        style="@style/DetailValueText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        app:velocityText="@{viewModel.selectedAsteroid.relativeVelocity}"
+                        tools:text="11.9 km/s" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/distance_from_earth_content_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/DetailTitleText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/distance_from_earth_title" />
+
+                    <TextView
+                        android:id="@+id/distance_from_earth"
+                        style="@style/DetailValueText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        app:astronomicalUnitText="@{viewModel.selectedAsteroid.distanceFromEarth}"
+                        tools:text="0.0924 au" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

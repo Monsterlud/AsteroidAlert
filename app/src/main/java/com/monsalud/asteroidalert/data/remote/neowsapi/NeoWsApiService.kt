@@ -20,6 +20,10 @@ private val retrofit = Retrofit.Builder()
     .baseUrl(Constants.BASE_URL)
     .build()
 
+/**
+ * API Service to make the Near Earth Objects Web Service calls
+ */
+
 interface AsteroidApiService {
     @GET("neo/rest/v1/feed")
     fun getAsteroids(

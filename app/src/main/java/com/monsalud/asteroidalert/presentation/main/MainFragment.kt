@@ -4,8 +4,6 @@ import android.content.Context
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
-import androidx.core.view.isInvisible
-import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -23,11 +21,12 @@ import kotlinx.coroutines.launch
 import java.util.Calendar
 import java.util.TimeZone
 
-
 class MainFragment : Fragment() {
     private lateinit var apodDescription: String
     private lateinit var viewModel: MainViewModel
     private lateinit var adapter: AsteroidAdapter
+
+    // set default apodDescription after the Fragment is attached to Activity
     override fun onAttach(context: Context) {
         super.onAttach(context)
         apodDescription = getString(R.string.default_apod_description)
@@ -42,7 +41,6 @@ class MainFragment : Fragment() {
          * Setup binding object and set astronomy picture of the day to default
          * so that there is a photo while image is loading
          */
-
         val binding: FragmentMainBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_main, container, false
         )
@@ -60,9 +58,6 @@ class MainFragment : Fragment() {
             viewModelFactory
         )[MainViewModel(asteroidRepository)::class.java]
         binding.viewModel = viewModel
-//        viewLifecycleOwner.lifecycleScope.launch {
-//            viewModel.clearAsteroids()
-//        }
 
         /**
          * Setup Adapter & bind this Adapter with the layout file's RecyclerView
@@ -109,8 +104,14 @@ class MainFragment : Fragment() {
 
         viewModel.loadingStatus.observe(viewLifecycleOwner) { status ->
             when (status) {
-                AsteroidApiStatus.LOADING -> binding.statusLoadingWheel.isVisible
-                AsteroidApiStatus.DONE -> binding.statusLoadingWheel.isInvisible
+                AsteroidApiStatus.LOADING -> {
+                    binding.statusLoadingWheel.visibility = View.VISIBLE
+                    binding.asteroidRecycler.visibility = View.GONE
+                }
+                AsteroidApiStatus.DONE -> {
+                    binding.statusLoadingWheel.visibility = View.GONE
+                    binding.asteroidRecycler.visibility = View.VISIBLE
+                }
                 else -> Toast.makeText(
                     context,
                     "There was an error loading data from Nasa",
@@ -132,7 +133,8 @@ class MainFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.show_image_explanation -> {
-                if (apodDescription.isEmpty()) displayExplanationDialog(
+                if (apodDescription.isNotEmpty())
+                    displayExplanationDialog(
                     requireContext(),
                     apodDescription
                 )
@@ -147,7 +149,7 @@ class MainFragment : Fragment() {
                 val weeksAsteroids = viewModel.asteroids.value?.filter { asteroid ->
                     val calendar = Calendar.getInstance()
                     calendar.timeZone = TimeZone.getDefault()
-                    asteroid.closeApproachDate in getTodayDate().. getEndOfWeekDate(calendar)
+                    asteroid.closeApproachDate in getTodayDate()..getEndOfWeekDate(calendar)
                 }
                 adapter.submitList(weeksAsteroids?.sortedBy {
                     it.closeApproachDate

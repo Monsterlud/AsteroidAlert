@@ -1,8 +1,13 @@
 package com.monsalud.asteroidalert.data.remote.neowsapi
 
 import com.monsalud.asteroidalert.data.local.room.AsteroidEntity
+import com.monsalud.asteroidalert.domain.Asteroid
 
+/**
+ * Data classes to receive JSON objects from the network
+ */
 data class NetworkAsteroidContainer(val near_earth_objects: Map<String, List<NetworkAsteroid>>)
+
 data class NetworkAsteroid(
     val absolute_magnitude_h: Double,
     val close_approach_data: List<CloseApproachData>,
@@ -80,6 +85,21 @@ fun List<NetworkAsteroid>.asDatabaseModel() : List<AsteroidEntity> {
             relativeVelocity = it.close_approach_data.first().relative_velocity.kilometers_per_second.toDouble(),
             distanceFromEarth = it.close_approach_data.first().miss_distance.astronomical.toDouble(),
             isPotentiallyDangerous = it.is_potentially_hazardous_asteroid
+        )
+    }
+}
+
+fun List<NetworkAsteroid>.asDomainModel() : List<Asteroid> {
+    return map {
+        Asteroid(
+            id = it.id.toLong(),
+            codename = it.name,
+            closeApproachDate = it.close_approach_data.first().close_approach_date,
+            absoluteMagnitude = it.absolute_magnitude_h,
+            estimatedDiameter = it.estimated_diameter.kilometers.estimated_diameter_max,
+            relativeVelocity = it.close_approach_data.first().relative_velocity.kilometers_per_second.toDouble(),
+            distanceFromEarth = it.close_approach_data.first().miss_distance.astronomical.toDouble(),
+            isPotentiallyHazardous = it.is_potentially_hazardous_asteroid
         )
     }
 }

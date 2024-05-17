@@ -15,3 +15,28 @@ data class Asteroid(
     val distanceFromEarth: Double,
     val isPotentiallyHazardous: Boolean
 ) : Parcelable
+
+fun List<Asteroid>.contentDeepEquals(other: List<Asteroid>): Boolean {
+    if (this.size != other.size) return false
+
+    val thisSet = this.toSet()
+    val otherSet = other.toSet()
+
+    return thisSet == otherSet
+}
+
+fun List<Asteroid>.asDatabaseModel(): List<AsteroidEntity> {
+    return map {
+        AsteroidEntity(
+            asteroidId = it.id,
+            codeName = it.codename,
+            closeApproachDate = it.closeApproachDate,
+            absoluteMagnitude = it.absoluteMagnitude,
+            estimatedDiameter = it.estimatedDiameter,
+            relativeVelocity = it.relativeVelocity,
+            distanceFromEarth = it.distanceFromEarth,
+            isPotentiallyDangerous = it.isPotentiallyHazardous
+        )
+    }
+}
+

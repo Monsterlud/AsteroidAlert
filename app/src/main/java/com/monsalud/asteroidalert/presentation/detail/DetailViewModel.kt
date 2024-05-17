@@ -11,6 +11,9 @@ class DetailViewModel(
     application: Application
 ) : AndroidViewModel(application) {
 
+    /**
+     * LiveData to update which Asteroid is passed to Detail screen
+     */
     private val _selectedAsteroid = MutableLiveData<Asteroid>()
     val selectedAsteroid: LiveData<Asteroid>
         get() = _selectedAsteroid

@@ -13,6 +13,9 @@ class AsteroidAdapter(
     private val clickListener: AsteroidClickListener
 ) : ListAdapter<Asteroid, AsteroidAdapter.AsteroidViewHolder>(DiffCallback) {
 
+    /**
+     * Use ListAdapter & DiffUtil.ItemCallback() for better updating performance
+     */
     companion object DiffCallback : DiffUtil.ItemCallback<Asteroid>() {
         override fun areItemsTheSame(oldItem: Asteroid, newItem: Asteroid): Boolean {
             return oldItem === newItem
@@ -61,6 +64,9 @@ class AsteroidAdapter(
     }
 }
 
+/**
+ * named Click Listener to handle clicks on RecyclerView.ViewHolder views
+ */
 class AsteroidClickListener(val clickListener: (asteroid: Asteroid) -> Unit) {
     fun onClick(asteroid: Asteroid) = clickListener(asteroid)
 }

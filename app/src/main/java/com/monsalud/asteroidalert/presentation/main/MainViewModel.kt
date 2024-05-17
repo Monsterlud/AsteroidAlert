@@ -1,25 +1,25 @@
 package com.monsalud.asteroidalert.presentation.main
 
-import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.monsalud.asteroidalert.data.AsteroidRepository
-import com.monsalud.asteroidalert.data.local.room.AsteroidDatabaseDao
-import com.monsalud.asteroidalert.data.local.room.AsteroidEntity
 import com.monsalud.asteroidalert.data.remote.apodapi.NetworkAPOD
 import com.monsalud.asteroidalert.domain.Asteroid
 import kotlinx.coroutines.launch
 
-enum class AsteroidApiStatus  { LOADING, ERROR, DONE }
+enum class AsteroidApiStatus { LOADING, ERROR, DONE }
 
 class MainViewModel(
     private val repository: AsteroidRepository
 ) : ViewModel() {
 
+    /**
+     * LiveData holding the latest NetworkAPOD object for the Fragment
+     * to extract the url as well as the explanation of the image
+     */
     private val _pictureOfTheDay = MutableLiveData<NetworkAPOD?>()
     val pictureOfTheDay: LiveData<NetworkAPOD?>
         get() = _pictureOfTheDay
@@ -58,6 +58,7 @@ class MainViewModel(
             _loadingStatus.value = AsteroidApiStatus.DONE
         } catch (e: Exception) {
             _loadingStatus.value = AsteroidApiStatus.ERROR
+            Log.e("MainViewModel", "refreshAsteroids error: ${e.message}", )
         }
     }
 

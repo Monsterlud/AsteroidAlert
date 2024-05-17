@@ -79,6 +79,10 @@ fun getEndSearchDate(): String {
     return getFormattedDate(calendar)
 }
 
+/**
+ * Helper method that returns the Saturday date of the current week
+ * This allows the app to filter the list of Asteroids to those that are in close approach during the remainder of this week
+ */
 fun getEndOfWeekDate(calendar: Calendar): String {
     val today = calendar.get(Calendar.DAY_OF_WEEK)
     Log.i("network utils", "todayInt: $today")
