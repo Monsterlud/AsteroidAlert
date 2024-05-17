@@ -16,9 +16,6 @@ interface AsteroidDatabaseDao {
     @Query("SELECT * FROM incoming_asteroid_table")
     fun getAllAsteroids(): LiveData<List<AsteroidEntity>>
 
-    @Query("SELECT * FROM incoming_asteroid_table WHERE asteroidId = :id")
-    fun getAsteroid(id: Long): AsteroidEntity
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllAsteroids(vararg asteroid: AsteroidEntity)
 

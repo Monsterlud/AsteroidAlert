@@ -28,6 +28,7 @@
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
+                android:contentDescription="@string/nasa_picture_of_day_content_description_format"
                 app:srcCompat="@drawable/placeholder_picture_of_day" />
 
             <TextView
@@ -41,7 +42,8 @@
                 android:text="@string/image_of_the_day"
                 android:textColor="@android:color/white"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:importantForAccessibility="no"/>
         </FrameLayout>
 
         <androidx.recyclerview.widget.RecyclerView

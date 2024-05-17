@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">AsteroidAlert</string>
 
-    <string name="next_week_asteroids">Ver semana de asteroides</string>
+    <string name="next_week_asteroids">Ver asteroides restantes esta semana</string>
     <string name="today_asteroids">Ver hoy asteroides</string>
     <string name="saved_asteroids">Ver asteroides guardados</string>
     <string name="close_approach_data_title">Fecha de aproximación cercana</string>
@@ -22,4 +22,7 @@
     <string name="nasa_picture_of_day_content_description_format">La fotografia del dia de la NASA: %s</string>
     <string name="learn_more_about_today_s_image">Obtenga más información sobre la imagen de hoy.</string>
     <string name="default_apod_description">"La imagen astronómica del día de la NASA es uno de los sitios web más populares de la agencia. Cada día se presenta una imagen o fotografía diferente de nuestro fascinante universo, junto con una breve explicación escrita por un astrónomo profesional."</string>
+    <string name="find_out_more_about_astronomical_units">Más información sobre las unidades astronómicas</string>
+    <string name="potentially_hazardous_asteroid_description">Imagen que indica que este asteroide es potencialmente peligroso</string>
+    <string name="safe_asteroid_description">Imagen que indica que este asteroide no tiene potencial de peligro</string>
 </resources>

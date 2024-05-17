@@ -18,6 +18,7 @@ class DetailFragment : Fragment() {
         val application = requireNotNull(activity).application
         val binding = FragmentDetailBinding.inflate(inflater)
         binding.lifecycleOwner = this
+        requireActivity().title = getString(R.string.app_name)
 
         val asteroid = DetailFragmentArgs.fromBundle(requireArguments()).selectedAsteroid
 

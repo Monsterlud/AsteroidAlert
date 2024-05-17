@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">AsteroidAlert</string>
 
-    <string name="next_week_asteroids">View week asteroids</string>
+    <string name="next_week_asteroids">View asteroids remaining this week</string>
     <string name="today_asteroids">View today asteroids</string>
     <string name="saved_asteroids">View saved asteroids</string>
     <string name="close_approach_data_title">Close approach date</string>
@@ -18,7 +18,10 @@
     <string name="potentially_hazardous_asteroid_image">Potentially hazardous asteroid image</string>
     <string name="not_hazardous_asteroid_image">Not hazardous asteroid image</string>
     <string name="this_is_nasa_s_picture_of_day_showing_nothing_yet">This is NASA\'s picture of day, showing nothing yet</string>
-    <string name="nasa_picture_of_day_content_description_format">NASA\'s picture of day: %s</string>
+    <string name="nasa_picture_of_day_content_description_format">NASA\'s picture of the day: %s</string>
     <string name="learn_more_about_today_s_image">Learn more about today\'s image</string>
     <string name="default_apod_description">Nasa\'s astronomy picture of the day is one of the most popular websites at the agency. Each day a different image or photograph of our fascinating universe is featured, along with a brief explantion written by a professional astronomer</string>
+    <string name="find_out_more_about_astronomical_units">Find out more about astronomical units</string>
+    <string name="potentially_hazardous_asteroid_description">Image indicating that this asteroid is potentially dangerous</string>
+    <string name="safe_asteroid_description">Image indicating that this asteroid has no potential for danger</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.monsalud.asteroidalert.data.remote
 
+import android.util.Log
 import com.monsalud.asteroidalert.domain.Asteroid
 import org.json.JSONObject
 import java.text.SimpleDateFormat
@@ -66,18 +67,29 @@ private fun getNextSevenDaysFormattedDates(): ArrayList<String> {
     return formattedDateList
 }
 
-fun getTodayDate() : String {
+fun getTodayDate(): String {
     val calendar = Calendar.getInstance()
     return getFormattedDate(calendar)
 }
 
-fun getEndSearchDate() : String {
+fun getEndSearchDate(): String {
     val calendar = Calendar.getInstance()
-    calendar.add(Calendar.DAY_OF_MONTH, 7)
+    calendar.timeZone = TimeZone.getDefault()
+    calendar.add(Calendar.DAY_OF_MONTH, 6)
     return getFormattedDate(calendar)
 }
 
-private fun getFormattedDate(calendar: Calendar) : String {
+fun getEndOfWeekDate(calendar: Calendar): String {
+    val today = calendar.get(Calendar.DAY_OF_WEEK)
+    Log.i("network utils", "todayInt: $today")
+    val numberOfDaysLeftInWeek = if (today == Calendar.SATURDAY) 7 else 7 - today
+    Log.i("network utils", "numberOfDaysLeftInWeek: $numberOfDaysLeftInWeek")
+    calendar.add(Calendar.DAY_OF_YEAR, numberOfDaysLeftInWeek)
+    Log.i("network utils", "newDate: ${getFormattedDate(calendar)}")
+    return getFormattedDate(calendar)
+}
+
+private fun getFormattedDate(calendar: Calendar): String {
     return String.format(
         Locale.getDefault(),
         DATE_FORMAT,
