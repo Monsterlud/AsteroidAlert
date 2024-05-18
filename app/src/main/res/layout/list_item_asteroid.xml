@@ -16,39 +16,48 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:importantForAccessibility="no">
 
-        <TextView
-            android:id="@+id/tv_asteroid_title"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/asteroid_title_group"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:textColor="@color/default_text_color"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="(2024 AB12)" />
+            android:focusable="true">
 
-        <TextView
-            android:id="@+id/tv_asteroid_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="8dp"
-            android:textColor="@color/text_grey"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tv_asteroid_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_asteroid_title"
-            tools:text="2024-05-04" />
+            <TextView
+                android:id="@+id/tv_asteroid_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/default_text_color"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="(2024 AB12)" />
+
+            <TextView
+                android:id="@+id/tv_asteroid_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginStart="16dp"
+                android:textColor="@color/text_grey"
+                android:textSize="14sp"
+                tools:text="2024-05-04" />
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/iv_asteroid_status"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginEnd="16dp"
+            android:focusable="true"
+            android:contentDescription="@{asteroid.isPotentiallyHazardous ? @string/asteroid_dangerous : @string/asteroid_safe}"
             android:src="@drawable/ic_status_normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -60,7 +69,7 @@
             android:layout_height="1dp"
             android:layout_marginTop="4dp"
             android:background="@color/charcoal_grey"
-            app:layout_constraintTop_toBottomOf="@+id/tv_asteroid_date" />
+            app:layout_constraintTop_toBottomOf="@+id/asteroid_title_group" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

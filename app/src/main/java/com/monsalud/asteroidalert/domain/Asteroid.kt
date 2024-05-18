@@ -13,7 +13,7 @@ data class Asteroid(
     val estimatedDiameter: Double,
     val relativeVelocity: Double,
     val distanceFromEarth: Double,
-    val isPotentiallyHazardous: Boolean
+    var isPotentiallyHazardous: Boolean
 ) : Parcelable
 
 fun List<Asteroid>.contentDeepEquals(other: List<Asteroid>): Boolean {

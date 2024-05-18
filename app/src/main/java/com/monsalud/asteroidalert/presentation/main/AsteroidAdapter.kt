@@ -32,13 +32,20 @@ class AsteroidAdapter(
 
     override fun onBindViewHolder(holder: AsteroidViewHolder, position: Int) {
         val item = getItem(position)
+        val context = holder.itemView.context
         holder.itemView.setOnClickListener {
             clickListener.onClick(item)
         }
+
+        holder.binding.ivAsteroidStatus.contentDescription =
+            if (item.isPotentiallyHazardous) context.getString(R.string.asteroid_dangerous)
+            else context.getString(R.string.asteroid_safe)
+        holder.binding.executePendingBindings()
         holder.bind(item, clickListener)
     }
 
-    class AsteroidViewHolder private constructor(private val binding: ListItemAsteroidBinding) : RecyclerView.ViewHolder(binding.root) {
+    class AsteroidViewHolder private constructor(val binding: ListItemAsteroidBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(
             item: Asteroid,
             clickListener: AsteroidClickListener
@@ -57,7 +64,7 @@ class AsteroidAdapter(
         companion object {
             fun from(parent: ViewGroup): AsteroidViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = ListItemAsteroidBinding.inflate(layoutInflater,  parent, false)
+                val binding = ListItemAsteroidBinding.inflate(layoutInflater, parent, false)
                 return AsteroidViewHolder(binding)
             }
         }
