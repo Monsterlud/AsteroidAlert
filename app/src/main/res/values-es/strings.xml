@@ -19,10 +19,12 @@
     <string name="potentially_hazardous_asteroid_image">Imagen de asteroide potencialmente peligroso</string>
     <string name="not_hazardous_asteroid_image">Imagen de asteroide no peligroso</string>
     <string name="this_is_nasa_s_picture_of_day_showing_nothing_yet">Esta es la fotografía del día de la NASA, que aún no muestra nada.</string>
-    <string name="nasa_picture_of_day_content_description_format">La fotografia del dia de la NASA: %s</string>
+    <string name="nasa_picture_of_day_content_description_format">Imagen astronómica del día de la NASA</string>
     <string name="learn_more_about_today_s_image">Obtenga más información sobre la imagen de hoy.</string>
     <string name="default_apod_description">"La imagen astronómica del día de la NASA es uno de los sitios web más populares de la agencia. Cada día se presenta una imagen o fotografía diferente de nuestro fascinante universo, junto con una breve explicación escrita por un astrónomo profesional."</string>
     <string name="find_out_more_about_astronomical_units">Más información sobre las unidades astronómicas</string>
     <string name="potentially_hazardous_asteroid_description">Imagen que indica que este asteroide es potencialmente peligroso</string>
     <string name="safe_asteroid_description">Imagen que indica que este asteroide no tiene potencial de peligro</string>
+    <string name="asteroid_dangerous">este asteroide es potencialmente peligroso para el planeta tierra</string>
+    \<string name="asteroid_safe">este asteroide no supone ningún peligro para el planeta tierra</string>
 </resources>
